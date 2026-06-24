@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — BlueWater Growth Partners</title>
+  <title>Contact | BlueWater Growth Partners</title>
   <meta name="description" content="Get in touch with BlueWater Growth Partners.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +94,7 @@
         Let's have a<br><span class="gradient-text">real conversation.</span>
       </h1>
       <p class="text-lg text-white/50 leading-relaxed font-light">
-        No pitch, no proposal until we know it's the right fit. Tell us where you are — we'll tell you if we can help.
+        No pitch, no proposal until we know it's the right fit. Tell us where you are and we'll tell you if we can help.
       </p>
     </div>
   </section>
@@ -109,7 +109,8 @@
           <h2 class="text-2xl font-bold text-slate-900 mb-2">Start a conversation</h2>
           <p class="text-slate-500 text-sm mb-8">We respond within one business day.</p>
 
-          <form action="mailto:support@bluewaterexec.com" method="POST" enctype="text/plain" class="flex flex-col gap-5">
+          <!-- Sign up free at formspree.io and replace YOUR_FORMSPREE_ID -->
+          <form id="cf" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="flex flex-col gap-5">
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-1.5">First name</label>
@@ -132,9 +133,9 @@
               <label class="block text-sm font-semibold text-slate-700 mb-1.5">What are you working on?</label>
               <select name="interest" class="input-field">
                 <option value="" disabled selected>Select one...</option>
-                <option value="advisory">Advisory — GTM &amp; Revenue Strategy</option>
-                <option value="fractional">Fractional CRO / Revenue Leadership</option>
-                <option value="permitpace">PermitPace — Permitting Compliance</option>
+                <option value="advisory">Advisory and GTM Strategy</option>
+                <option value="fractional">Fractional CRO and Revenue Leadership</option>
+                <option value="solutions">Solutions and Compliance Software</option>
                 <option value="other">Something else</option>
               </select>
             </div>
@@ -142,11 +143,12 @@
               <label class="block text-sm font-semibold text-slate-700 mb-1.5">Tell us more</label>
               <textarea name="message" rows="4" placeholder="Where are you stuck? What's the goal? What have you already tried?" class="input-field"></textarea>
             </div>
-            <button type="submit"
+            <button id="cf-btn" type="submit"
               class="w-full py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/25 hover:-translate-y-0.5 mt-1">
               Send Message
             </button>
           </form>
+          <div id="cf-ok" class="hidden text-center py-8"><div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><h3 class="text-xl font-bold text-slate-900 mb-2">Message received</h3><p class="text-slate-500 text-sm">We will be in touch within one business day.</p></div>
         </div>
 
         <!-- Info panel -->
@@ -155,12 +157,11 @@
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
             <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
               <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
-            <h3 class="font-bold text-slate-900 mb-1">Email us directly</h3>
-            <a href="mailto:support@bluewaterexec.com" class="text-blue-600 text-sm font-medium hover:underline">support@bluewaterexec.com</a>
-            <p class="text-slate-400 text-xs mt-1">We reply within one business day.</p>
+            <h3 class="font-bold text-slate-900 mb-1">Quick response</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">We read every message and respond within one business day. No gatekeeping, no SDR. You will hear from a principal.</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
@@ -170,7 +171,7 @@
               </svg>
             </div>
             <h3 class="font-bold text-slate-900 mb-1">Advisory</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">AI/Human Modernization, GTM strategy, fractional revenue leadership for B2B SaaS and AI companies.</p>
+            <p class="text-slate-500 text-sm leading-relaxed">AI/Human Modernization, GTM strategy, and fractional revenue leadership for companies ready to build the modern revenue engine.</p>
           </div>
 
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
@@ -179,8 +180,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
               </svg>
             </div>
-            <h3 class="font-bold text-slate-900 mb-1">PermitPace</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">Florida permitting compliance software. Early access available for municipalities and developers.</p>
+            <h3 class="font-bold text-slate-900 mb-1">Solutions</h3>
+            <p class="text-slate-500 text-sm leading-relaxed">Governance and compliance software. PermitPace and our growing suite of products built for regulated industries.</p>
           </div>
 
         </div>
@@ -205,7 +206,7 @@
               <span class="text-blue-400 font-bold text-[8px] tracking-[2px] uppercase block mt-1 leading-none">GROWTH PARTNERS</span>
             </div>
           </div>
-          <p class="text-slate-500 text-sm leading-relaxed max-w-xs">Go-to-market advisory for B2B SaaS and AI companies building revenue engines that scale.</p>
+          <p class="text-slate-500 text-sm leading-relaxed max-w-xs">Go-to-market advisory for companies building AI-powered revenue engines that scale.</p>
         </div>
         <div>
           <p class="text-white font-semibold text-sm mb-5">Services</p>
@@ -231,6 +232,36 @@
 
   <script>
     document.getElementById('ham').addEventListener('click', () => document.getElementById('mob').classList.toggle('open'));
+  </script>
+  <script>
+(function(){
+  var form = document.getElementById('cf');
+  if (!form) return;
+  var btn = document.getElementById('cf-btn');
+  var ok = document.getElementById('cf-ok');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var orig = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        form.style.display = 'none';
+        ok.classList.remove('hidden');
+      } else {
+        btn.textContent = orig;
+        btn.disabled = false;
+      }
+    }).catch(function() {
+      btn.textContent = orig;
+      btn.disabled = false;
+    });
+  });
+})();
   </script>
 </body>
 </html>
