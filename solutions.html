@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
   <style>
     *, body { font-family: 'Inter', sans-serif; }
     .hero-bg { background: linear-gradient(-45deg, #0A1628, #0f2040, #162440, #0A1628); background-size: 400% 400%; animation: gp 18s ease infinite; }
@@ -68,7 +68,7 @@
 
   <!-- HERO -->
   <section class="hero-bg pt-36 pb-20 px-6 text-center">
-    <div class="max-w-3xl mx-auto" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto">
       <span class="inline-block mb-5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-blue-300 border border-blue-500/30 bg-blue-500/10">BlueWater Solutions</span>
       <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
         We don't just advise.<br><span class="gradient-text">We build.</span>
@@ -84,7 +84,7 @@
     <div class="max-w-6xl mx-auto">
 
       <!-- Tab Bar -->
-      <div class="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up">
+      <div class="flex flex-wrap justify-center gap-3 mb-16">
         <button id="btn-compliance" class="tab-btn px-6 py-3 rounded-xl text-sm font-semibold" onclick="showTab('compliance')">Governance and Compliance</button>
         <button id="btn-cyber" class="tab-btn px-6 py-3 rounded-xl text-sm font-semibold" onclick="showTab('cyber')">Cybersecurity</button>
         <button id="btn-gtmai" class="tab-btn px-6 py-3 rounded-xl text-sm font-semibold" onclick="showTab('gtmai')">GTM AI</button>
@@ -94,7 +94,7 @@
       <div id="pane-compliance">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Content -->
-          <div data-aos="fade-right">
+          <div>
             <p class="text-blue-600 text-xs font-semibold uppercase tracking-widest mb-3">Governance and Compliance</p>
             <h2 class="text-4xl font-extrabold text-slate-900 mb-4">PermitPace</h2>
             <p class="text-slate-500 text-lg mb-6">AI-powered permit compliance for government and developers.</p>
@@ -125,7 +125,7 @@
             </a>
           </div>
           <!-- Demo: browser chrome with screenshot -->
-          <div data-aos="fade-left">
+          <div>
             <div style="background:#1e293b; border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.25);">
               <div style="background:#334155; padding:10px 16px; display:flex; align-items:center; gap:8px;">
                 <div style="display:flex;gap:5px;"><span style="width:10px;height:10px;background:#ef4444;border-radius:50%;display:inline-block;"></span><span style="width:10px;height:10px;background:#f59e0b;border-radius:50%;display:inline-block;"></span><span style="width:10px;height:10px;background:#22c55e;border-radius:50%;display:inline-block;"></span></div>
@@ -141,7 +141,7 @@
       <div id="pane-cyber" class="hidden">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Demo: VendorShield rendered mock -->
-          <div data-aos="fade-right">
+          <div>
             <div style="background:#1e293b; border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.25);">
               <div style="background:#334155; padding:10px 16px; display:flex; align-items:center; gap:8px;">
                 <div style="display:flex;gap:5px;"><span style="width:10px;height:10px;background:#ef4444;border-radius:50%;display:inline-block;"></span><span style="width:10px;height:10px;background:#f59e0b;border-radius:50%;display:inline-block;"></span><span style="width:10px;height:10px;background:#22c55e;border-radius:50%;display:inline-block;"></span></div>
@@ -193,7 +193,7 @@
             </div>
           </div>
           <!-- Content -->
-          <div data-aos="fade-left">
+          <div>
             <p class="text-blue-600 text-xs font-semibold uppercase tracking-widest mb-3">Cybersecurity</p>
             <h2 class="text-4xl font-extrabold text-slate-900 mb-4">VendorShield</h2>
             <p class="text-slate-500 text-lg mb-6">AI-powered third-party vendor risk management.</p>
@@ -230,7 +230,7 @@
       <div id="pane-gtmai" class="hidden">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Content -->
-          <div data-aos="fade-right">
+          <div>
             <p class="text-blue-600 text-xs font-semibold uppercase tracking-widest mb-3">GTM AI</p>
             <h2 class="text-4xl font-extrabold text-slate-900 mb-4">PipelineIQ</h2>
             <p class="text-slate-500 text-lg mb-6">AI revenue intelligence for modern sales teams.</p>
@@ -261,7 +261,7 @@
             </a>
           </div>
           <!-- Demo: PipelineIQ rendered mock -->
-          <div data-aos="fade-left">
+          <div>
             <div style="background:#1e293b; border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.25);">
               <div style="background:#334155; padding:10px 16px; display:flex; align-items:center; gap:8px;">
                 <div style="display:flex;gap:5px;"><span style="width:10px;height:10px;background:#ef4444;border-radius:50%;display:inline-block;"></span><span style="width:10px;height:10px;background:#f59e0b;border-radius:50%;display:inline-block;"></span><span style="width:10px;height:10px;background:#22c55e;border-radius:50%;display:inline-block;"></span></div>
@@ -322,7 +322,7 @@
   </section>
 
   <!-- CTA SECTION -->
-  <section class="bg-gradient-to-br from-blue-600 to-blue-500 py-24 px-6 text-center" data-aos="fade-up">
+  <section class="bg-gradient-to-br from-blue-600 to-blue-500 py-24 px-6 text-center">
     <div class="max-w-2xl mx-auto">
       <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-5">Building in a regulated space?</h2>
       <p class="text-blue-100 text-lg leading-relaxed mb-10">We partner with organizations to scope, design, and build purpose-built software for industries where compliance is table stakes.</p>
@@ -372,16 +372,15 @@
     </div>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
   <script>
-    AOS.init({ duration: 750, easing: 'ease-out-cubic', once: true, offset: 70 });
+
     document.getElementById('ham').addEventListener('click', () => document.getElementById('mob').classList.toggle('open'));
 
     function showTab(id) {
       ['compliance','cyber','gtmai'].forEach(function(t) {
         document.getElementById('pane-'+t).classList.add('hidden');
-        var b = document.getElementById('btn-'+t);
-        b.classList.remove('active');
+        document.getElementById('btn-'+t).classList.remove('active');
       });
       document.getElementById('pane-'+id).classList.remove('hidden');
       document.getElementById('btn-'+id).classList.add('active');
