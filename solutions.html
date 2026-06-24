@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions — BlueWater Growth Partners</title>
+  <meta name="description" content="Governance & compliance software solutions. PermitPace brings AI-powered permit tracking to the government sector.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <style>
+    *, body { font-family: 'Inter', sans-serif; }
+    .hero-bg {
+      background: linear-gradient(-45deg, #0A1628, #0f2040, #162440, #0A1628);
+      background-size: 400% 400%;
+      animation: gp 18s ease infinite;
+    }
+    @keyframes gp { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .mobile-menu { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+    .mobile-menu.open { max-height:320px; }
+    .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.09); }
+    .pulse-dot { animation: pd 2.5s ease-in-out infinite; }
+    @keyframes pd { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
+    .gradient-text { background:linear-gradient(90deg,#60A5FA,#93C5FD); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* PermitPace Demo UI */
+    .demo-shell {
+      background: #0F172A;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .demo-titlebar {
+      background: #1E293B;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s;
+      font-size: 12px;
+    }
+    .demo-row:hover { background: rgba(255,255,255,0.03); }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-approved { background: rgba(16,185,129,0.15); color: #34D399; }
+    .status-pending  { background: rgba(245,158,11,0.15); color: #FCD34D; }
+    .status-review   { background: rgba(59,130,246,0.15); color: #93C5FD; }
+    .status-overdue  { background: rgba(239,68,68,0.12);  color: #FCA5A5; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #34D399; animation: livePulse 1.8s ease-in-out infinite; }
+    @keyframes livePulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(52,211,153,0.4)} 50%{opacity:.7;box-shadow:0 0 0 4px rgba(52,211,153,0)} }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      animation: barFill 2.5s ease-out forwards;
+    }
+    @keyframes barFill { from{width:0} to{width:var(--fill)} }
+    .risk-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;
+    }
+    .risk-low  { background: rgba(16,185,129,0.12); color: #34D399; }
+    .risk-med  { background: rgba(245,158,11,0.12); color: #FCD34D; }
+    .risk-high { background: rgba(239,68,68,0.12); color: #FCA5A5; }
+    /* Row entrance animation */
+    .demo-row { opacity: 0; transform: translateX(-8px); animation: rowIn 0.5s ease forwards; }
+    .demo-row:nth-child(1) { animation-delay: 0.3s; }
+    .demo-row:nth-child(2) { animation-delay: 0.55s; }
+    .demo-row:nth-child(3) { animation-delay: 0.8s; }
+    .demo-row:nth-child(4) { animation-delay: 1.05s; }
+    .demo-row:nth-child(5) { animation-delay: 1.3s; }
+    @keyframes rowIn { to { opacity:1; transform:translateX(0); } }
+    .score-counter { animation: countUp 2s ease-out forwards; }
+    @keyframes countUp {
+      0%   { content: "0%"; }
+      100% { content: "94%"; }
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-white/97 backdrop-blur-md py-4 px-6 lg:px-10 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-blue-500 rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/30">
+          <span class="text-white font-black text-sm">BW</span>
+        </div>
+        <div class="leading-none">
+          <span class="font-semibold text-slate-900 text-sm block">BlueWater</span>
+          <span class="font-normal text-xs block text-slate-500">Growth Partners</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="advisory.html" class="text-slate-600 hover:text-slate-900 text-sm font-medium transition-colors">Advisory</a>
+        <a href="solutions.html" class="text-blue-600 text-sm font-semibold border-b-2 border-blue-500 pb-0.5">Solutions</a>
+        <a href="about.html" class="text-slate-600 hover:text-slate-900 text-sm font-medium transition-colors">About</a>
+        <a href="contact.html" class="px-5 py-2.5 bg-blue-500 text-white text-sm font-semibold rounded-xl hover:bg-blue-600 transition-all duration-200">Get in Touch</a>
+      </div>
+      <button id="ham" class="md:hidden text-slate-700 p-1.5">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mob" class="mobile-menu md:hidden mt-3 bg-white rounded-2xl border border-slate-100 shadow-lg">
+      <div class="p-5 flex flex-col gap-4">
+        <a href="advisory.html" class="text-slate-600 text-sm font-medium">Advisory</a>
+        <a href="solutions.html" class="text-blue-600 text-sm font-semibold">Solutions</a>
+        <a href="about.html" class="text-slate-600 text-sm font-medium">About</a>
+        <a href="contact.html" class="text-blue-600 font-semibold text-sm">Get in Touch →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg pt-36 pb-24 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-25" style="background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-400/25 bg-blue-500/10 mb-6">
+        <span class="w-2 h-2 bg-blue-400 rounded-full pulse-dot"></span>
+        <span class="text-blue-300 text-xs font-bold tracking-widest uppercase">Product Solutions</span>
+      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-[1.06] mb-6 tracking-tight">
+        Governance &<br><span class="gradient-text">Compliance</span>
+      </h1>
+      <p class="text-lg md:text-xl text-white/55 max-w-2xl leading-relaxed font-light mb-8">
+        Purpose-built software for complex compliance environments. We turn regulatory complexity into competitive advantage.
+      </p>
+    </div>
+  </section>
+
+  <!-- PERMITPACE FEATURE -->
+  <section class="py-28 px-6 bg-slate-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Copy -->
+        <div data-aos="fade-right">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 mb-6">
+            <div class="live-dot"></div>
+            <span class="text-blue-700 text-xs font-bold tracking-widest uppercase">Flagship Product</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-5">PermitPace</h2>
+          <p class="text-slate-500 leading-relaxed mb-6 text-[15px]">
+            AI-powered permit compliance tracking built for Florida's government reform wave. PermitPace monitors municipal permit timelines against SB 1080 and HB 803 requirements — so builders, contractors, and developers never miss a refund deadline or deemed-approval trigger.
+          </p>
+
+          <div class="flex flex-col gap-4 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed"><strong class="text-slate-800">SB 1080 refund tracking</strong> — automatic alerts before the refund window closes</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed"><strong class="text-slate-800">HB 803 deemed-approval monitoring</strong> — track the July 1, 2026 threshold in real time</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed"><strong class="text-slate-800">Accela integration</strong> — connects directly with the permitting systems cities already use</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center mt-0.5 shrink-0">
+                <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed"><strong class="text-slate-800">AI risk scoring</strong> — prioritize the permits most likely to breach compliance deadlines</p>
+            </div>
+          </div>
+
+          <a href="contact.html" class="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/25 hover:-translate-y-0.5">
+            Request Early Access
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Animated Demo -->
+        <div data-aos="fade-left" data-aos-delay="150">
+          <div class="demo-shell">
+            <!-- Titlebar -->
+            <div class="demo-titlebar">
+              <div class="demo-dot" style="background:#FF5F57;"></div>
+              <div class="demo-dot" style="background:#FFBD2E;"></div>
+              <div class="demo-dot" style="background:#28CA41;"></div>
+              <div class="ml-3 flex items-center gap-2">
+                <div class="live-dot"></div>
+                <span class="text-slate-300 text-xs font-semibold">PermitPace — FL Compliance Dashboard</span>
+              </div>
+            </div>
+
+            <!-- Stats row -->
+            <div class="flex gap-0 border-b border-white/5">
+              <div class="flex-1 p-4 border-r border-white/5 text-center">
+                <div class="text-2xl font-black text-white">94<span class="text-sm font-semibold text-slate-400">%</span></div>
+                <div class="text-slate-500 text-[10px] mt-0.5 uppercase tracking-wider font-semibold">Compliance Score</div>
+              </div>
+              <div class="flex-1 p-4 border-r border-white/5 text-center">
+                <div class="text-2xl font-black text-emerald-400">12</div>
+                <div class="text-slate-500 text-[10px] mt-0.5 uppercase tracking-wider font-semibold">Approved</div>
+              </div>
+              <div class="flex-1 p-4 border-r border-white/5 text-center">
+                <div class="text-2xl font-black text-amber-400">4</div>
+                <div class="text-slate-500 text-[10px] mt-0.5 uppercase tracking-wider font-semibold">At Risk</div>
+              </div>
+              <div class="flex-1 p-4 text-center">
+                <div class="text-2xl font-black text-red-400">1</div>
+                <div class="text-slate-500 text-[10px] mt-0.5 uppercase tracking-wider font-semibold">Overdue</div>
+              </div>
+            </div>
+
+            <!-- Column headers -->
+            <div class="flex items-center gap-3 px-4 py-2.5 bg-slate-900/50 border-b border-white/4">
+              <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider w-28">Permit #</span>
+              <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider flex-1">Applicant</span>
+              <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider w-20">Days Left</span>
+              <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider w-24">Status</span>
+              <span class="text-slate-500 text-[10px] font-bold uppercase tracking-wider w-16">Risk</span>
+            </div>
+
+            <!-- Permit rows -->
+            <div class="divide-y divide-white/3">
+              <div class="demo-row">
+                <span class="text-slate-300 font-mono text-[11px] w-28">FL-2026-8834</span>
+                <span class="text-slate-400 text-[11px] flex-1">Sarasota Builders LLC</span>
+                <span class="text-slate-300 text-[11px] w-20">42 days</span>
+                <span class="status-badge status-approved w-24">✓ Approved</span>
+                <span class="risk-pill risk-low w-16">Low</span>
+              </div>
+              <div class="demo-row">
+                <span class="text-slate-300 font-mono text-[11px] w-28">FL-2026-8835</span>
+                <span class="text-slate-400 text-[11px] flex-1">Gulf Coast Dev Group</span>
+                <span class="text-amber-400 font-semibold text-[11px] w-20">8 days</span>
+                <span class="status-badge status-pending w-24">⏳ Pending</span>
+                <span class="risk-pill risk-med w-16">Medium</span>
+              </div>
+              <div class="demo-row">
+                <span class="text-slate-300 font-mono text-[11px] w-28">FL-2026-8836</span>
+                <span class="text-slate-400 text-[11px] flex-1">Manatee Co. Permits</span>
+                <span class="text-slate-300 text-[11px] w-20">21 days</span>
+                <span class="status-badge status-review w-24">⚡ In Review</span>
+                <span class="risk-pill risk-low w-16">Low</span>
+              </div>
+              <div class="demo-row">
+                <span class="text-slate-300 font-mono text-[11px] w-28">FL-2026-8837</span>
+                <span class="text-slate-400 text-[11px] flex-1">Venice Residential</span>
+                <span class="text-red-400 font-bold text-[11px] w-20">2 days ⚠</span>
+                <span class="status-badge status-overdue w-24">! Overdue</span>
+                <span class="risk-pill risk-high w-16">High</span>
+              </div>
+              <div class="demo-row">
+                <span class="text-slate-300 font-mono text-[11px] w-28">FL-2026-8838</span>
+                <span class="text-slate-400 text-[11px] flex-1">North Port Holdings</span>
+                <span class="text-slate-300 text-[11px] w-20">30 days</span>
+                <span class="status-badge status-approved w-24">✓ Approved</span>
+                <span class="risk-pill risk-low w-16">Low</span>
+              </div>
+            </div>
+
+            <!-- Progress footer -->
+            <div class="p-4 bg-slate-900/40 border-t border-white/4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-slate-500 text-[10px] uppercase font-bold tracking-wider">SB 1080 Compliance Window</span>
+                <span class="text-emerald-400 text-[11px] font-bold">94%</span>
+              </div>
+              <div class="h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                <div class="progress-bar-fill bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full" style="--fill:94%;"></div>
+              </div>
+              <div class="flex justify-between mt-1.5">
+                <span class="text-slate-600 text-[9px]">16 of 17 permits in compliance</span>
+                <span class="text-slate-600 text-[9px]">Updated just now</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM WE SOLVE -->
+  <section class="py-28 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <p class="text-blue-600 text-xs font-bold tracking-widest uppercase mb-3">Why It Matters</p>
+        <h2 class="text-4xl font-extrabold text-slate-900 leading-tight">Florida's permitting reform<br>changes everything</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl bg-slate-50 card-lift" data-aos="fade-up" data-aos-delay="50">
+          <div class="text-4xl font-black text-blue-600 mb-3">SB 1080</div>
+          <h3 class="font-bold text-slate-900 mb-3">Automatic Refunds</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Cities that exceed permit review timelines must issue automatic fee refunds. Manual tracking misses deadlines. PermitPace doesn't.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-slate-50 card-lift" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-4xl font-black text-blue-600 mb-3">HB 803</div>
+          <h3 class="font-bold text-slate-900 mb-3">Deemed Approved</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Effective July 1, 2026 — permits not reviewed in time are automatically approved. That's massive risk for municipalities without real-time tracking.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-slate-50 card-lift" data-aos="fade-up" data-aos-delay="150">
+          <div class="text-4xl font-black text-blue-600 mb-3">6 Laws</div>
+          <h3 class="font-bold text-slate-900 mb-3">Reform Wave</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Florida's six-law permitting reform is the beginning. PermitPace is built as a compliance layer for this wave and the ones that follow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMING NEXT -->
+  <section class="py-24 px-6" style="background:#0A1628;">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-blue-400 text-xs font-bold tracking-widest uppercase mb-4" data-aos="fade-up">Pipeline</p>
+      <h2 class="text-4xl font-extrabold text-white mb-5 leading-tight" data-aos="fade-up" data-aos-delay="50">More solutions coming.</h2>
+      <p class="text-white/45 leading-relaxed mb-10 font-light" data-aos="fade-up" data-aos-delay="100">
+        PermitPace is the first in a suite of governance and compliance tools BlueWater is building for regulated industries. If you're operating in a space where compliance is a bottleneck, we want to hear from you.
+      </p>
+      <a href="contact.html" class="inline-block px-10 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl transition-all hover:-translate-y-0.5 shadow-xl shadow-blue-500/30" data-aos="fade-up" data-aos-delay="150">
+        Talk to Our Team
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#060E1C;" class="text-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-9 h-9 bg-blue-500 rounded-xl flex items-center justify-center">
+              <span class="text-white font-black text-sm">BW</span>
+            </div>
+            <span class="text-white font-semibold text-sm">BlueWater Growth Partners</span>
+          </div>
+          <p class="text-slate-500 text-sm leading-relaxed max-w-xs">Go-to-market advisory for B2B SaaS and AI companies building revenue engines that scale.</p>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-5">Services</p>
+          <div class="flex flex-col gap-3">
+            <a href="advisory.html" class="text-slate-500 hover:text-white text-sm transition-colors">Advisory</a>
+            <a href="solutions.html" class="text-slate-500 hover:text-white text-sm transition-colors">Solutions</a>
+          </div>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-5">Company</p>
+          <div class="flex flex-col gap-3">
+            <a href="about.html" class="text-slate-500 hover:text-white text-sm transition-colors">About</a>
+            <a href="contact.html" class="text-slate-500 hover:text-white text-sm transition-colors">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-slate-600 text-sm">© 2026 BlueWater Growth Partners. All rights reserved.</p>
+        <p class="text-slate-700 text-xs">bluewaterexec.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 750, easing: 'ease-out-cubic', once: true, offset: 70 });
+    document.getElementById('ham').addEventListener('click', () => document.getElementById('mob').classList.toggle('open'));
+  </script>
+</body>
+</html>
